@@ -13,7 +13,12 @@
 
 ## 시작하기 전 
 
-- 별도의 프로그램 설치가 필요 없어요. 단, [소스 코드](./gui_src.py)를 직접 사용해보고 싶다면 Python이 설치되어 있어야 해요. 
+- 별도의 프로그램 설치가 필요 없어요. 단, [소스 코드](./gui_src.py)를 직접 사용해보고 싶다면 Python이 설치되어 있어야 해요.
+
+## 설치하기
+
+아래 링크에서 설치를 진행하세요 (현재 버젼: v1.0.0). </br>
+> **LINK**: https://github.com/wjgoarxiv/ISCOPump-Decoder/releases/tag/ISCOPump-Decoderv1.0.0
 
 ## 기여하기
 
