@@ -1,0 +1,198 @@
+/* General Styles */
+QWidget {
+    background-color: #ffffff; /* Light background color */
+    color: #094067; /* Dark text color */
+    font-family: Helvetica, Arial;
+}
+
+/* Custom font for Headlines/Labels with a rounded background */
+QLabel {
+    font-size: 15px;
+    color: #ffffff; /* Assuming white text for contrast */
+    background-color: #3da9fc; /* Button background color for visibility */
+    font-weight: bold;
+    padding: 2px; /* Padding to ensure text doesn't touch the border edge */
+    border: None; /* No border */
+    border-radius: 6px; 
+    margin: 1px; /* Optional margin around the label */
+    /* Additional QLabel styles if needed */
+}
+/* Styles for QPushButton */
+QPushButton {
+    background-color: #3da9fc; /* Button background color */
+    color: #ffffff; /* Light button text color */
+    border: None; /* No border */
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #90b4ce; /* Lighter secondary color for hover state */
+}
+
+QPushButton:pressed {
+    background-color: #ef4565; /* Tertiary color for pressed state */
+}
+
+QTextEdit {
+    background-color: #ffffff; /* Light background color for text edit */
+    border: 1px solid #90b4ce; /* Light secondary color for border */
+    border-radius: 4px;
+    padding: 4px;
+    color: #fffffe; /* Changed to black text color for better visibility */
+}
+
+/* Styles for QComboBox */
+QComboBox {
+    background-color: #fffffe; /* Light background color for better visibility */
+    color: #5f6c7b; /* Dark text color for better visibility */
+    border: 1px solid #90b4ce; /* Light secondary color for border */
+    border-radius: 4px;
+    padding: 4px;
+    min-width: 6em;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: #90b4ce; /* Light secondary color for border */
+    border-left-style: solid;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+QComboBox::down-arrow {
+    image: url(path/to/arrow.png); /* Replace with the actual path to the arrow image */
+}
+
+/* Style for QComboBox when it's expanded (showing the dropdown items) */
+QComboBox QAbstractItemView {
+    border: 1px solid #90b4ce; /* Light secondary color for border */
+    selection-background-color: #3da9fc; /* Button background color for the selected item */
+    selection-color: #ffffff; /* Light button text color for the selected item */
+    background-color: #fffffe; /* Light background color for the dropdown */
+    color: #5f6c7b; /* Dark text color for the dropdown items */
+}
+
+/* Styles for QFrame used as a line */
+QFrame {
+    background-color: #094067; /* Dark stroke color for lines */
+}
+
+/* Styles for the QMainWindow */
+QMainWindow {
+    background-color: #ffffff; /* Light background color */
+}
+
+/* Additional styling for other widgets like QMenuBar, QStatusBar, QToolBar if they are used */
+QMenuBar {
+	background-color: #ffffff; /* Light background color */
+	color: #094067; /* Dark text color */
+	border-bottom: 1px solid #90b4ce; /* Light secondary color for border */
+}
+
+QMenuBar::item {
+	spacing: 3px; /* spacing between menu bar items */
+	padding: 1px 4px;
+	background: transparent;
+}
+
+QMenuBar::item:selected {
+	background: #90b4ce; /* Light secondary color for selected menu bar item */
+}
+
+QMenuBar::item:pressed {
+	background: #ef4565; /* Tertiary color for pressed menu bar item */
+}
+
+/* Styles for QFileDialog */
+QFileDialog {
+    background-color: #ffffff; /* Light background color */
+	color: #094067; /* Dark text color */
+    border: 1px solid #90b4ce; /* Light secondary color for border */
+    border-radius: 4px;
+    padding: 4px;
+}
+
+QFileDialog QListView, QFileDialog QTreeView {
+	background-color: #ffffff; /* Light background color */
+	border: 1px solid #90b4ce; /* Light secondary color for border */
+	border-radius: 4px;
+	padding: 4px;
+}
+
+QFileDialog QListView::item, QFileDialog QTreeView::item {
+	background-color: #ffffff; /* Light background color */
+	color: #094067; /* Dark text color */
+}	
+
+QFileDialog QListView::item:selected, QFileDialog QTreeView::item:selected {
+	background-color: #90b4ce; /* Light secondary color for border */
+	color: #ffffff; /* Light text color */
+}
+
+QStatusBar {
+	background-color: #ffffff; /* Light background color */
+	color: #094067; /* Dark text color */
+	border-top: 1px solid #90b4ce; /* Light secondary color for border */
+}
+
+QToolBar {
+	background-color: #ffffff; /* Light background color */
+	border-bottom: 1px solid #90b4ce; /* Light secondary color for border */
+}
+
+QToolBar::separator {
+	background-color: #90b4ce; /* Light secondary color for border */
+	width: 1px;
+	height: 1px;
+}
+
+QToolButton {
+	background-color: #ffffff; /* Light background color */
+	border: 1px solid #90b4ce; /* Light secondary color for border */
+	border-radius: 4px;
+	padding: 4px;
+}
+
+QToolButton:hover {
+	background-color: #90b4ce; /* Light secondary color for border */
+}
+
+QToolButton:checked {
+	background-color: #ef4565; /* Tertiary color for pressed state */
+}
+
+QToolButton:pressed {
+	background-color: #ef4565; /* Tertiary color for pressed state */
+}
+
+QToolButton:disabled {
+	background-color: #ffffff; /* Light background color */
+	border: 1px solid #90b4ce; /* Light secondary color for border */
+	border-radius: 4px;
+	padding: 4px;
+}
+
+QToolButton:checked:disabled {
+	background-color: #ef4565; /* Tertiary color for pressed state */
+}
+
+QToolButton:pressed:disabled {
+	background-color: #ef4565; /* Tertiary color for pressed state */
+}
+
+/* Styles for QTabWidget */
+
+QTabWidget::pane {
+	border: 1px solid #90b4ce; /* Light secondary color for border */
+	padding: 4px;
+}
+
+QTabWidget::tab-bar {
+	left: 5px; /* move to the right by 5px */
+}
