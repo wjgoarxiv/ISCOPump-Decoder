@@ -1,7 +1,6 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QLabel, QComboBox, QPushButton, QTextEdit, QCheckBox, QLineEdit, QFileDialog, QWidget, QMessageBox, QDialog, QFrame
-from PyQt5.QtCore import Qt
-from PyQt5 import QtGui, QtCore
-from PyQt5.QtGui import QPixmap
+from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTextEdit, QWidget, QComboBox, QFileDialog, QMessageBox, QFrame
+from PyQt6.QtGui import QFont, QIcon, QDesktopServices
+from PyQt6.QtCore import Qt, QUrl
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import sys
@@ -9,7 +8,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
 import pandas as pd
-from PyQt5.QtWidgets import QFileDialog
 
 def rcparams():
     rcParams['figure.figsize'] = 4, 5 
@@ -77,6 +75,9 @@ class ISCODecoder(QMainWindow):
         self.initUI()
 
     def initUI(self):
+        # Apply the template's stylesheet
+        self.load_stylesheet("./stylesheet.qss")
+
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         
@@ -84,13 +85,14 @@ class ISCODecoder(QMainWindow):
         main_layout = QVBoxLayout(central_widget)
 
         # Title, version, author
-        main_layout.addWidget(QLabel("ISCODecoder", font=QtGui.QFont("Arial", 20, QtGui.QFont.Bold), alignment=Qt.AlignCenter))
-        main_layout.addWidget(QLabel("Version 1.0.0", font=QtGui.QFont("Arial", 12, QtGui.QFont.Bold), alignment=Qt.AlignCenter))
-        main_layout.addWidget(QLabel("Author: @wjgoarxiv", font=QtGui.QFont("Arial", 12, QtGui.QFont.Bold), alignment=Qt.AlignCenter))
+        title_font = QFont("Arial", 20, QFont.Weight.Bold)
+        main_layout.addWidget(QLabel("ISCODecoder", font=title_font, alignment=Qt.AlignmentFlag.AlignCenter))
+        main_layout.addWidget(QLabel("Version 1.0.1", font=QFont("Arial", 12, QFont.Weight.Bold), alignment=Qt.AlignmentFlag.AlignCenter))
+        main_layout.addWidget(QLabel("Author: @wjgoarxiv", font=QFont("Arial", 12, QFont.Weight.Bold), alignment=Qt.AlignmentFlag.AlignCenter))
 
         # Horizontal layout for buttons
         button_layout = QHBoxLayout()
-        self.github_button = QPushButton("About ISCODecoder")
+        self.github_button = QPushButton("About ISCOPump-Decoder")
         self.github_button.clicked.connect(lambda: QtGui.QDesktopServices.openUrl(QtCore.QUrl("https://github.com/wjgoarxiv/ISCOPump-Decoder")))
         button_layout.addWidget(self.github_button)
 
@@ -105,9 +107,21 @@ class ISCODecoder(QMainWindow):
         self.donate_button = QPushButton("Donate me!")
         self.donate_button.clicked.connect(lambda: QtGui.QDesktopServices.openUrl(QtCore.QUrl("https://www.buymeacoffee.com/woojingo")))
         button_layout.addWidget(self.donate_button)
+
+        # Add a line to separate the dropdowns and the canvas
+        line = QFrame()
+        line.setFrameShape(QFrame.Shape.HLine)
+        line.setFrameShadow(QFrame.Shadow.Sunken)
+        main_layout.addWidget(line)
         
         # Add the button layout to the main layout
         main_layout.addLayout(button_layout)
+
+        # Add a line to separate the dropdowns and the canvas
+        line = QFrame()
+        line.setFrameShape(QFrame.Shape.HLine)
+        line.setFrameShadow(QFrame.Shadow.Sunken)
+        main_layout.addWidget(line)
 
         # Create buttons to load the CSV files and add to the main layouts
         load_button_layout = QHBoxLayout()
@@ -161,8 +175,8 @@ class ISCODecoder(QMainWindow):
 
         # Add a line to separate the dropdowns and the canvas
         line = QFrame()
-        line.setFrameShape(QFrame.HLine)
-        line.setFrameShadow(QFrame.Sunken)
+        line.setFrameShape(QFrame.Shape.HLine)
+        line.setFrameShadow(QFrame.Shadow.Sunken)
         main_layout.addWidget(line)
 
         # Add buttons to call save_csv and save_csv3 functions
@@ -184,8 +198,8 @@ class ISCODecoder(QMainWindow):
         # Dividing section with line  
         hlayout = QHBoxLayout()
         line = QFrame()
-        line.setFrameShape(QFrame.VLine)
-        line.setFrameShadow(QFrame.Sunken)
+        line.setFrameShape(QFrame.Shape.VLine)
+        line.setFrameShadow(QFrame.Shadow.Sunken)
 
         # Figure saving button
         save_figure_button = QPushButton('Save Figure', self)
@@ -563,8 +577,9 @@ class ISCODecoder(QMainWindow):
             QMessageBox.critical(self, "Error", "The selected variable does not exist in the dataframe.")
 
     def save_figure(self):
-        # Prompt user to select file name and location to save CSV file
-        file_name, _ = QFileDialog.getSaveFileName(self, "Save Figure", "", "PNG Files (*.png)")
+
+        # PNG, JPG, and other formats are supported
+        file_name, _ = QFileDialog.getSaveFileName(self, "Save Figure", "", "PNG Files (*.png);;JPG Files (*.jpg);;All Files (*)")
 
         # If user cancels the dialog, do nothing
         if not file_name:
@@ -582,8 +597,13 @@ class ISCODecoder(QMainWindow):
             self.dropdown_x_var.addItem(column_name)
             self.dropdown_y_var.addItem(column_name)
 
+    def load_stylesheet(self, file_path):
+        with open(file_path, "r") as f:
+            self.setStyleSheet(f.read())
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    gui = ISCODecoder()
-    gui.show()
-    sys.exit(app.exec_())
+    app.setWindowIcon(QIcon("icon.ico"))
+    window = ISCODecoder()
+    window.show()
+    sys.exit(app.exec())
