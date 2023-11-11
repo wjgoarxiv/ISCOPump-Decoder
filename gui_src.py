@@ -75,9 +75,6 @@ class ISCODecoder(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        # Apply the template's stylesheet
-        self.load_stylesheet("./stylesheet.qss")
-
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         
@@ -87,25 +84,25 @@ class ISCODecoder(QMainWindow):
         # Title, version, author
         title_font = QFont("Arial", 20, QFont.Weight.Bold)
         main_layout.addWidget(QLabel("ISCODecoder", font=title_font, alignment=Qt.AlignmentFlag.AlignCenter))
-        main_layout.addWidget(QLabel("Version 1.0.1", font=QFont("Arial", 12, QFont.Weight.Bold), alignment=Qt.AlignmentFlag.AlignCenter))
-        main_layout.addWidget(QLabel("Author: @wjgoarxiv", font=QFont("Arial", 12, QFont.Weight.Bold), alignment=Qt.AlignmentFlag.AlignCenter))
+        main_layout.addWidget(QLabel("버젼 1.0.1", font=QFont("Arial", 12, QFont.Weight.Bold), alignment=Qt.AlignmentFlag.AlignCenter))
+        main_layout.addWidget(QLabel("저자: @wjgoarxiv", font=QFont("Arial", 12, QFont.Weight.Bold), alignment=Qt.AlignmentFlag.AlignCenter))
 
         # Horizontal layout for buttons
         button_layout = QHBoxLayout()
-        self.github_button = QPushButton("About ISCOPump-Decoder")
-        self.github_button.clicked.connect(lambda: QtGui.QDesktopServices.openUrl(QtCore.QUrl("https://github.com/wjgoarxiv/ISCOPump-Decoder")))
+        self.github_button = QPushButton("ISCOPump-Decoder에 관하여")
+        self.github_button.clicked.connect(lambda: QDesktopServices.openUrl(QUrl("https://github.com/wjgoarxiv/ISCOPump-Decoder")))
         button_layout.addWidget(self.github_button)
 
-        self.wjgoarxiv_github_button = QPushButton("My GitHub")
-        self.wjgoarxiv_github_button.clicked.connect(lambda: QtGui.QDesktopServices.openUrl(QtCore.QUrl("https://github.com/wjgoarxiv")))
+        self.wjgoarxiv_github_button = QPushButton("저자 GitHub")
+        self.wjgoarxiv_github_button.clicked.connect(lambda: QDesktopServices.openUrl(QUrl("https://github.com/wjgoarxiv")))
         button_layout.addWidget(self.wjgoarxiv_github_button)
 
-        self.wjgoarxiv_hp_button = QPushButton("My Homepage")
-        self.wjgoarxiv_hp_button.clicked.connect(lambda: QtGui.QDesktopServices.openUrl(QtCore.QUrl("https://woojingo.site")))
+        self.wjgoarxiv_hp_button = QPushButton("저자 홈페이지")
+        self.wjgoarxiv_hp_button.clicked.connect(lambda: QDesktopServices.openUrl(QUrl("https://woojingo.site")))
         button_layout.addWidget(self.wjgoarxiv_hp_button)
 
-        self.donate_button = QPushButton("Donate me!")
-        self.donate_button.clicked.connect(lambda: QtGui.QDesktopServices.openUrl(QtCore.QUrl("https://www.buymeacoffee.com/woojingo")))
+        self.donate_button = QPushButton("저자에게 기부를!")
+        self.donate_button.clicked.connect(lambda: QDesktopServices.openUrl(QUrl("https://www.buymeacoffee.com/woojingo")))
         button_layout.addWidget(self.donate_button)
 
         # Add a line to separate the dropdowns and the canvas
@@ -125,11 +122,11 @@ class ISCODecoder(QMainWindow):
 
         # Create buttons to load the CSV files and add to the main layouts
         load_button_layout = QHBoxLayout()
-        load_isco_button = QPushButton('Load ISCO CSV', self)
+        load_isco_button = QPushButton('ISCO CSV 데이터 불러오기', self)
         load_isco_button.clicked.connect(self.load_csv)
         load_button_layout.addWidget(load_isco_button)
 
-        load_dw_button = QPushButton('Load DW CSV', self)
+        load_dw_button = QPushButton('DW CSV 데이터 불러오기', self)
         load_dw_button.clicked.connect(self.load_csv3)
         load_button_layout.addWidget(load_dw_button)
 
@@ -141,13 +138,13 @@ class ISCODecoder(QMainWindow):
         # Preview for ISCO
         self.preview_isco_layout = QVBoxLayout()
         self.preview_isco = QTextEdit()
-        self.preview_isco_layout.addWidget(QLabel("ISCO Data preview:"))
+        self.preview_isco_layout.addWidget(QLabel("ISCO 데이터 미리보기:"))
         self.preview_isco_layout.addWidget(self.preview_isco)
 
         # Preview for DW
         self.preview_dw_layout = QVBoxLayout()
         self.preview_dw = QTextEdit()
-        self.preview_dw_layout.addWidget(QLabel("DW Data preview:"))
+        self.preview_dw_layout.addWidget(QLabel("DW 데이터 미리보기:"))
         self.preview_dw_layout.addWidget(self.preview_dw)
 
         # Add previews to the horizontal layout
@@ -160,14 +157,14 @@ class ISCODecoder(QMainWindow):
         # Dropdowns for selecting variables to plot
         self.dropdown_x_var = QComboBox()
         self.dropdown_y_var = QComboBox()
-        plot_button = QPushButton('Plot', self)
+        plot_button = QPushButton('플롯!', self)
         plot_button.clicked.connect(self.plot_data)
 
         # Horizontal layout for dropdowns and plot button
         dropdown_layout = QHBoxLayout()
-        dropdown_layout.addWidget(QLabel("Select X variable:"))
+        dropdown_layout.addWidget(QLabel("X 변수 선택하기:"))
         dropdown_layout.addWidget(self.dropdown_x_var)
-        dropdown_layout.addWidget(QLabel("Select Y variable:"))
+        dropdown_layout.addWidget(QLabel("Y 변수 선택하기:"))
         dropdown_layout.addWidget(self.dropdown_y_var)
         dropdown_layout.addWidget(plot_button)
 
@@ -181,11 +178,11 @@ class ISCODecoder(QMainWindow):
 
         # Add buttons to call save_csv and save_csv3 functions
         save_button_layout = QHBoxLayout()
-        save_isco_button = QPushButton('Save ISCO CSV', self)
+        save_isco_button = QPushButton('변환된 ISCO CSV 파일 저장하기', self)
         save_isco_button.clicked.connect(self.save_csv)
         save_button_layout.addWidget(save_isco_button)
 
-        save_dw_button = QPushButton('Save DW CSV', self)
+        save_dw_button = QPushButton('변환된 DW CSV 파일 저장하기', self)
         save_dw_button.clicked.connect(self.save_csv3)
         save_button_layout.addWidget(save_dw_button)
 
@@ -202,7 +199,7 @@ class ISCODecoder(QMainWindow):
         line.setFrameShadow(QFrame.Shadow.Sunken)
 
         # Figure saving button
-        save_figure_button = QPushButton('Save Figure', self)
+        save_figure_button = QPushButton('그래프 그림으로 저장하기', self)
         save_figure_button.clicked.connect(self.save_figure)
         hlayout.addWidget(save_figure_button)
 
@@ -210,7 +207,7 @@ class ISCODecoder(QMainWindow):
         main_layout.addLayout(hlayout)
 
         # Exit
-        exit_button = QPushButton('Exit', self)
+        exit_button = QPushButton('종료하기', self)
         exit_button.clicked.connect(self.close)
         main_layout.addWidget(exit_button)
 
@@ -600,10 +597,212 @@ class ISCODecoder(QMainWindow):
     def load_stylesheet(self, file_path):
         with open(file_path, "r") as f:
             self.setStyleSheet(f.read())
+    
+my_style_sheet = """
+/* General Styles */
+QWidget {
+    background-color: #ffffff; /* Light background color */
+    color: #094067; /* Dark text color */
+    font-family: Helvetica, Arial;
+}
+
+/* Custom font for Headlines/Labels with a rounded background */
+QLabel {
+    font-size: 15px;
+    color: #ffffff; /* Assuming white text for contrast */
+    background-color: #3da9fc; /* Button background color for visibility */
+    font-weight: bold;
+    padding: 2px; /* Padding to ensure text doesn't touch the border edge */
+    border: None; /* No border */
+    border-radius: 6px; 
+    margin: 1px; /* Optional margin around the label */
+    /* Additional QLabel styles if needed */
+}
+/* Styles for QPushButton */
+QPushButton {
+    background-color: #3da9fc; /* Button background color */
+    color: #ffffff; /* Light button text color */
+    border: None; /* No border */
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #90b4ce; /* Lighter secondary color for hover state */
+}
+
+QPushButton:pressed {
+    background-color: #ef4565; /* Tertiary color for pressed state */
+}
+
+QTextEdit {
+    background-color: #ffffff; /* Light background color for text edit */
+    border: 1px solid #90b4ce; /* Light secondary color for border */
+    border-radius: 4px;
+    padding: 4px;
+    color: #fffffe; /* Changed to black text color for better visibility */
+}
+
+/* Styles for QComboBox */
+QComboBox {
+    background-color: #fffffe; /* Light background color for better visibility */
+    color: #5f6c7b; /* Dark text color for better visibility */
+    border: 1px solid #90b4ce; /* Light secondary color for border */
+    border-radius: 4px;
+    padding: 4px;
+    min-width: 6em;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: #90b4ce; /* Light secondary color for border */
+    border-left-style: solid;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+QComboBox::down-arrow {
+    image: url(path/to/arrow.png); /* Replace with the actual path to the arrow image */
+}
+
+/* Style for QComboBox when it's expanded (showing the dropdown items) */
+QComboBox QAbstractItemView {
+    border: 1px solid #90b4ce; /* Light secondary color for border */
+    selection-background-color: #3da9fc; /* Button background color for the selected item */
+    selection-color: #ffffff; /* Light button text color for the selected item */
+    background-color: #fffffe; /* Light background color for the dropdown */
+    color: #5f6c7b; /* Dark text color for the dropdown items */
+}
+
+/* Styles for QFrame used as a line */
+QFrame {
+    background-color: #094067; /* Dark stroke color for lines */
+}
+
+/* Styles for the QMainWindow */
+QMainWindow {
+    background-color: #ffffff; /* Light background color */
+}
+
+/* Additional styling for other widgets like QMenuBar, QStatusBar, QToolBar if they are used */
+QMenuBar {
+	background-color: #ffffff; /* Light background color */
+	color: #094067; /* Dark text color */
+	border-bottom: 1px solid #90b4ce; /* Light secondary color for border */
+}
+
+QMenuBar::item {
+	spacing: 3px; /* spacing between menu bar items */
+	padding: 1px 4px;
+	background: transparent;
+}
+
+QMenuBar::item:selected {
+	background: #90b4ce; /* Light secondary color for selected menu bar item */
+}
+
+QMenuBar::item:pressed {
+	background: #ef4565; /* Tertiary color for pressed menu bar item */
+}
+
+/* Styles for QFileDialog */
+QFileDialog {
+    background-color: #ffffff; /* Light background color */
+	color: #094067; /* Dark text color */
+    border: 1px solid #90b4ce; /* Light secondary color for border */
+    border-radius: 4px;
+    padding: 4px;
+}
+
+QFileDialog QListView, QFileDialog QTreeView {
+	background-color: #ffffff; /* Light background color */
+	border: 1px solid #90b4ce; /* Light secondary color for border */
+	border-radius: 4px;
+	padding: 4px;
+}
+
+QFileDialog QListView::item, QFileDialog QTreeView::item {
+	background-color: #ffffff; /* Light background color */
+	color: #094067; /* Dark text color */
+}	
+
+QFileDialog QListView::item:selected, QFileDialog QTreeView::item:selected {
+	background-color: #90b4ce; /* Light secondary color for border */
+	color: #ffffff; /* Light text color */
+}
+
+QStatusBar {
+	background-color: #ffffff; /* Light background color */
+	color: #094067; /* Dark text color */
+	border-top: 1px solid #90b4ce; /* Light secondary color for border */
+}
+
+QToolBar {
+	background-color: #ffffff; /* Light background color */
+	border-bottom: 1px solid #90b4ce; /* Light secondary color for border */
+}
+
+QToolBar::separator {
+	background-color: #90b4ce; /* Light secondary color for border */
+	width: 1px;
+	height: 1px;
+}
+
+QToolButton {
+	background-color: #ffffff; /* Light background color */
+	border: 1px solid #90b4ce; /* Light secondary color for border */
+	border-radius: 4px;
+	padding: 4px;
+}
+
+QToolButton:hover {
+	background-color: #90b4ce; /* Light secondary color for border */
+}
+
+QToolButton:checked {
+	background-color: #ef4565; /* Tertiary color for pressed state */
+}
+
+QToolButton:pressed {
+	background-color: #ef4565; /* Tertiary color for pressed state */
+}
+
+QToolButton:disabled {
+	background-color: #ffffff; /* Light background color */
+	border: 1px solid #90b4ce; /* Light secondary color for border */
+	border-radius: 4px;
+	padding: 4px;
+}
+
+QToolButton:checked:disabled {
+	background-color: #ef4565; /* Tertiary color for pressed state */
+}
+
+QToolButton:pressed:disabled {
+	background-color: #ef4565; /* Tertiary color for pressed state */
+}
+
+/* Styles for QTabWidget */
+
+QTabWidget::pane {
+	border: 1px solid #90b4ce; /* Light secondary color for border */
+	padding: 4px;
+}
+
+QTabWidget::tab-bar {
+	left: 5px; /* move to the right by 5px */
+}
+"""
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("icon.ico"))
+    app.setStyleSheet(my_style_sheet)
     window = ISCODecoder()
     window.show()
     sys.exit(app.exec())
