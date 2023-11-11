@@ -18,7 +18,7 @@
 ## 설치하기
 
 아래 링크에서 설치를 진행하세요 (현재 버젼: v1.0.0). </br>
-> **LINK**: https://github.com/wjgoarxiv/ISCOPump-Decoder/releases/tag/ISCOPump-Decoderv1.0.0
+> **LINK**: https://github.com/wjgoarxiv/ISCOPump-Decoder/releases/tag/ISCOPump-Decoderv1.0.1
 
 ## 기여하기
 
