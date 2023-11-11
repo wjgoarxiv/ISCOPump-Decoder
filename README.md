@@ -2,6 +2,12 @@
 
 <img src = "./logo.png" Width="70%">
 
+## 프로그램 미리보기 
+
+|ISCO Data **불러오기**|ISCO 데이터로 **그래프 그리기**|DWStemp 데이터로 **그래프 그리기**|
+|:---:|:---:|:---:|
+|<img src = "./showcase/1.png" Width="100%">|<img src = "./showcase/2.png" Width="100%">|<img src = "./showcase/3.png" Width="100%">|
+
 ## 소개
 
 **ISCOPump Decoder**는 [ISCOPump LabView 프로그램](https://www.teledyneisco.com/pumps/misc)으로 출력 된 CSV 파일을 처리하고, 또 플롯까지 할 수 있게 만들어주는 프로그램이에요. 랩뷰로부터 출력 된 CSV파일을 매번 액셀에서 수정하지 말고, ISCOPump Decoder를 이용해 쉽고 간편하게 실험 데이터를 확인하세요. 
@@ -17,7 +23,7 @@
 
 ## 설치하기
 
-아래 링크에서 설치를 진행하세요 (현재 버젼: v1.0.0). </br>
+아래 링크에서 설치를 진행하세요 (현재 버젼: v1.0.1). </br>
 > **LINK**: https://github.com/wjgoarxiv/ISCOPump-Decoder/releases/tag/ISCOPump-Decoderv1.0.1
 
 ## 기여하기
