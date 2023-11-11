@@ -91,7 +91,7 @@ class ISCODecoder(QMainWindow):
         # Horizontal layout for buttons
         button_layout = QHBoxLayout()
         self.github_button = QPushButton("About ISCODecoder")
-        self.github_button.clicked.connect(lambda: QtGui.QDesktopServices.openUrl(QtCore.QUrl("https://github.com/wjgoarxiv/ISCODecoder")))
+        self.github_button.clicked.connect(lambda: QtGui.QDesktopServices.openUrl(QtCore.QUrl("https://github.com/wjgoarxiv/ISCOPump-Decoder")))
         button_layout.addWidget(self.github_button)
 
         self.wjgoarxiv_github_button = QPushButton("My GitHub")
